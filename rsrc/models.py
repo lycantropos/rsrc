@@ -108,7 +108,7 @@ class URL:
 
     def __eq__(self, other: 'URL') -> bool:
         if not isinstance(other, URL):
-            return False
+            return NotImplemented
         return self._tuple == other._tuple
 
     def __str__(self) -> str:
