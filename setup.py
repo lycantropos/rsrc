@@ -7,6 +7,10 @@ import rsrc
 
 project_base_url = 'https://github.com/lycantropos/rsrc/'
 
+install_requires = [
+    'reprit>=0.0.1',
+    'memoir>=0.0.1',
+]
 setup_requires = [
     'pytest-runner>=4.2',
 ]
@@ -16,7 +20,7 @@ tests_require = [
     'hypothesis>=3.73.1',
 ]
 
-setup(name='rsrc',
+setup(name=rsrc.__name__,
       packages=find_packages(exclude=('tests', 'tests.*')),
       version=rsrc.__version__,
       description=rsrc.__doc__,
@@ -26,6 +30,7 @@ setup(name='rsrc',
       author_email='azatibrakov@gmail.com',
       url=project_base_url,
       download_url=project_base_url + 'archive/master.zip',
-      python_requires='>=3.5',
+      python_requires='>=3.5.3',
+      install_requires=install_requires,
       setup_requires=setup_requires,
       tests_require=tests_require)
