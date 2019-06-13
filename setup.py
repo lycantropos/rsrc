@@ -20,7 +20,7 @@ tests_require = [
     'hypothesis>=3.73.1',
 ]
 
-setup(name='rsrc',
+setup(name=rsrc.__name__,
       packages=find_packages(exclude=('tests', 'tests.*')),
       version=rsrc.__version__,
       description=rsrc.__doc__,
