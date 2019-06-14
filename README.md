@@ -1,7 +1,7 @@
 rsrc
 ====
 
-[![](https://travis-ci.org/lycantropos/rsrc.svg?branch=master)](https://travis-ci.org/lycantropos/rsrc "Travis CI")
+[![](https://travis-ci.com/lycantropos/rsrc.svg?branch=master)](https://travis-ci.com/lycantropos/rsrc "Travis CI")
 [![](https://dev.azure.com/azatibrakov/rsrc/_apis/build/status/lycantropos.rsrc?branchName=master)](https://dev.azure.com/azatibrakov/rsrc/_build/latest?definitionId=2&branchName=master "Azure Pipelines")
 [![](https://codecov.io/gh/lycantropos/rsrc/branch/master/graph/badge.svg)](https://codecov.io/gh/lycantropos/rsrc "Codecov")
 [![](https://img.shields.io/github/license/lycantropos/rsrc.svg)](https://github.com/lycantropos/rsrc/blob/master/LICENSE "License")
@@ -55,6 +55,65 @@ Install:
   ```bash
   pypy setup.py install
   ```
+
+Usage
+-----
+
+The main idea is to use `setuptools` feature 
+called ["Dynamic Discovery of Services and Plugins"](https://setuptools.readthedocs.io/en/latest/setuptools.html#dynamic-discovery-of-services-and-plugins).
+
+Assuming we have a package `rsrc_ftp` with structure
+
+    |_ rsrc_ftp.py
+    |_ setup.py
+
+which adds support for URLs with `ftp` scheme
+
+`rsrc_ftp.py`
+```python
+from rsrc.models import Resource
+
+def deserialize(string: str) -> Resource:
+    ...
+```
+
+to make it available for `rsrc` package 
+we should register its entry point 
+(`rsrc_ftp::deserialize` function in our case)
+
+`setup.py`
+```python
+from setuptools import setup
+
+from rsrc import plugins
+
+plugins_entry_points = [
+    plugins.to_entry_point(id_=plugins.to_id('ftp'),
+                           module_name='rsrc_ftp',
+                           function_name='deserialize'),
+]
+setup(name='rsrc_ftp',
+      py_modules=['rsrc_ftp'],
+      entry_points={plugins.__name__: plugins_entry_points},
+      install_requires=['rsrc'])
+```
+
+After that the installation of `rsrc_ftp` package 
+will register `rsrc_ftp::deserialize` function in `rsrc` package 
+as an entry point for resources with `ftp` scheme
+
+```python
+>>> from rsrc.base import deserialize
+>>> ftp_resource = deserialize('ftp://path/to/resource')
+>>> ftp_resource.url
+URL('ftp', 'path', '/to/resource', '', '', '')
+```
+
+Plugins
+-------
+
+- [`rsrc_local`](https://pypi.org/project/rsrc_local) -- adds support for local/local network files & directories.
+- [`rsrc_web`](https://pypi.org/project/rsrc_web) -- adds support for web resources (both `http` & `https` schemes).
 
 Development
 -----------
