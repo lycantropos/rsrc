@@ -27,6 +27,16 @@ class URL:
                'params', 'query', 'fragment')
     __slots__ = ('_tuple', '__weakref__')
 
+    # added for auto-completion support,
+    # each of them will be overwritten afterwards in cycle
+    # and made a `property`
+    scheme = ''
+    authority = ''
+    path_string = ''
+    params = ''
+    query = ''
+    fragment = ''
+
     for index, field in enumerate(_fields):
         locals()[field] = property(
                 lambda self, index=index: self._tuple[index])
