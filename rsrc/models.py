@@ -3,6 +3,7 @@ from abc import (ABC,
 from pathlib import PurePosixPath
 from typing import (Any,
                     Generic,
+                    IO,
                     Iterable,
                     Iterator,
                     Optional,
@@ -162,7 +163,7 @@ class FileLikeStream(Stream[Union[bytes, str]]):
              *,
              binary_mode: bool = False,
              encoding: Optional[str] = None,
-             **kwargs) -> Iterable[Union[bytes, str]]:
+             **kwargs: Any) -> IO:
         pass
 
 

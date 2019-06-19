@@ -46,6 +46,16 @@ git clone https://github.com/lycantropos/rsrc.git
 cd rsrc
 ```
 
+Install dependencies:
+- with `CPython`
+  ```bash
+  python -m pip install -r requirements.txt
+  ```
+- with `PyPy`
+  ```bash
+  pypy -m pip install -r requirements.txt
+  ```
+
 Install:
 - with `CPython`
   ```bash
@@ -167,15 +177,20 @@ as separate pull request.
 
 ### Running tests
 
-Plain:
+Install dependencies:
 - with `CPython`
   ```bash
-  python setup.py test
+  python -m pip install -r requirements-tests.txt
   ```
 - with `PyPy`
   ```bash
-  pypy setup.py test
+  pypy -m pip install -r requirements-tests.txt
   ```
+
+Plain
+```bash
+pytest
+```
 
 Inside `Docker` container:
 - with `CPython`
