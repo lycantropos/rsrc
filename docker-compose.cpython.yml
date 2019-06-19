@@ -7,12 +7,12 @@ services:
       args:
       - PYTHON_IMAGE=${CPYTHON_IMAGE_NAME}
       - PYTHON_IMAGE_VERSION=${CPYTHON_IMAGE_VERSION}
-    image: lycantropos/rsrc-cpython:0.0.2
+    image: lycantropos/rsrc-cpython:0.0.3
     volumes:
       - ./rsrc/:/opt/rsrc/rsrc/
       - ./tests/:/opt/rsrc/tests/
       - ./README.md:/opt/rsrc/README.md
-      - ./setup.py:/opt/rsrc/setup.py
       - ./setup.cfg:/opt/rsrc/setup.cfg
-    entrypoint: python3
-    command: setup.py test
+      - ./.coveragerc:/opt/rsrc/.coveragerc
+      - ./setup.py:/opt/rsrc/setup.py
+    entrypoint: pytest

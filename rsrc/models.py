@@ -5,6 +5,7 @@ from typing import (Any,
                     Generic,
                     Iterable,
                     Iterator,
+                    Optional,
                     Type,
                     TypeVar,
                     Union)
@@ -152,6 +153,16 @@ class Stream(Base, Generic[Element]):
 
     @abstractmethod
     def receive(self, source: Base, **kwargs: Any) -> None:
+        pass
+
+
+class FileLikeStream(Stream[Union[bytes, str]]):
+    @abstractmethod
+    def open(self,
+             *,
+             binary_mode: bool = False,
+             encoding: Optional[str] = None,
+             **kwargs) -> Iterable[Union[bytes, str]]:
         pass
 
 

@@ -8,7 +8,11 @@ WORKDIR /opt/rsrc
 COPY rsrc/ rsrc/
 COPY tests/ tests/
 COPY README.md .
-COPY setup.py .
+COPY requirements-tests.txt .
+COPY requirements.txt .
 COPY setup.cfg .
+COPY .coveragerc .
+COPY setup.py .
 
-RUN pip install -e .
+RUN pip install -r requirements-tests.txt
+RUN pip install -r requirements.txt

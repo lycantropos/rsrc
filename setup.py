@@ -7,18 +7,11 @@ import rsrc
 
 project_base_url = 'https://github.com/lycantropos/rsrc/'
 
-install_requires = [
-    'reprit>=0.0.1',
-    'memoir>=0.0.1',
-]
+install_requires = Path('requirements.txt').read_text()
 setup_requires = [
     'pytest-runner>=4.2',
 ]
-tests_require = [
-    'pytest>=3.8.1',
-    'pytest-cov>=2.6.0',
-    'hypothesis>=3.73.1',
-]
+tests_require = Path('requirements-tests.txt').read_text()
 
 setup(name=rsrc.__name__,
       packages=find_packages(exclude=('tests', 'tests.*')),
