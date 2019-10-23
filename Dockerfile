@@ -14,5 +14,5 @@ COPY setup.cfg .
 COPY .coveragerc .
 COPY setup.py .
 
-RUN pip install -r requirements-tests.txt
-RUN pip install -r requirements.txt
+RUN pip install --force-reinstall -r requirements-tests.txt
+RUN pip install --force-reinstall -r requirements.txt

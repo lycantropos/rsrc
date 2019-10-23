@@ -35,7 +35,7 @@ _deserializers = _load_deserializers()
 def deserialize(string: str) -> Resource:
     result = URL.from_string(string)
     location = _deserializers
-    for field in result._tuple:
+    for field in result.without_credentials._tuple:
         try:
             location = location[field]
         except KeyError:

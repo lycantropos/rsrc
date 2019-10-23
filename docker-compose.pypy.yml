@@ -7,7 +7,7 @@ services:
       args:
       - PYTHON_IMAGE=${PYPY_IMAGE_NAME}
       - PYTHON_IMAGE_VERSION=${PYPY_IMAGE_VERSION}
-    image: lycantropos/rsrc-pypy:0.0.4
+    image: lycantropos/rsrc-pypy:0.1.0
     volumes:
       - ./rsrc/:/opt/rsrc/rsrc/
       - ./tests/:/opt/rsrc/tests/
