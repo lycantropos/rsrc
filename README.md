@@ -2,7 +2,7 @@ rsrc
 ====
 
 [![](https://travis-ci.com/lycantropos/rsrc.svg?branch=master)](https://travis-ci.com/lycantropos/rsrc "Travis CI")
-[![](https://dev.azure.com/lycantropos/rsrc/_apis/build/status/lycantropos.rsrc?branchName=master)](https://dev.azure.com/lycantropos/rsrc/_build/latest?definitionId=2&branchName=master "Azure Pipelines")
+[![](https://dev.azure.com/lycantropos/rsrc/_apis/build/status/lycantropos.rsrc?branchName=master)](https://dev.azure.com/lycantropos/rsrc/_build/latest?definitionId=4&branchName=master "Azure Pipelines")
 [![](https://codecov.io/gh/lycantropos/rsrc/branch/master/graph/badge.svg)](https://codecov.io/gh/lycantropos/rsrc "Codecov")
 [![](https://img.shields.io/github/license/lycantropos/rsrc.svg)](https://github.com/lycantropos/rsrc/blob/master/LICENSE "License")
 [![](https://badge.fury.io/py/rsrc.svg)](https://badge.fury.io/py/rsrc "PyPI")

@@ -1,2 +1,2 @@
-memoir>=0.0.1
-reprit>=0.0.1
+memoir>=0.0.3
+reprit>=0.2.2

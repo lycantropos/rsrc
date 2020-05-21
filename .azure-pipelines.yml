@@ -1,7 +1,7 @@
 jobs:
   - job: 'Windows'
     pool:
-      vmImage: 'vs2017-win2016'
+      vmImage: 'windows-latest'
     strategy:
       matrix:
         Python35_x86:
@@ -22,7 +22,15 @@ jobs:
         Python37_x64:
           python.version: '3.7'
           python.architecture: 'x64'
-      maxParallel: 6
+        Python38_x86:
+          python.version: '3.8'
+          python.architecture: 'x86'
+        Python38_x64:
+          python.version: '3.8'
+          python.architecture: 'x64'
+        PyPy3:
+          python.version: 'pypy3'
+          python.architecture: 'x86'
 
     steps:
       - task: UsePythonVersion@0
@@ -33,10 +41,10 @@ jobs:
         displayName: 'Install packaging tools'
       - script: python -m pip install --upgrade codecov
         displayName: 'Install codecov'
-      - script: python -m pip install --force-reinstall -r requirements-tests.txt
-        displayName: 'Install tests requirements'
       - script: python -m pip install --force-reinstall -r requirements.txt
         displayName: 'Install requirements'
+      - script: python -m pip install --force-reinstall -r requirements-tests.txt
+        displayName: 'Install tests requirements'
       - script: pytest
         displayName: 'Run tests'
       - script: python -m codecov -f coverage.xml -X gcov
@@ -47,7 +55,7 @@ jobs:
 
   - job: 'MacOS'
     pool:
-      vmImage: 'macOS-10.13'
+      vmImage: 'macOS-latest'
     strategy:
       matrix:
         Python35:
@@ -56,9 +64,10 @@ jobs:
           python.version: '3.6'
         Python37:
           python.version: '3.7'
+        Python38:
+          python.version: '3.8'
         PyPy3:
           python.version: 'pypy3'
-      maxParallel: 4
 
     steps:
       - task: UsePythonVersion@0
@@ -68,10 +77,10 @@ jobs:
         displayName: 'Install packaging tools'
       - script: python -m pip install --upgrade codecov
         displayName: 'Install codecov'
-      - script: python -m pip install --force-reinstall -r requirements-tests.txt
-        displayName: 'Install tests requirements'
       - script: python -m pip install --force-reinstall -r requirements.txt
         displayName: 'Install requirements'
+      - script: python -m pip install --force-reinstall -r requirements-tests.txt
+        displayName: 'Install tests requirements'
       - script: pytest
         displayName: 'Run tests'
       - script: python -m codecov -f coverage.xml -X gcov

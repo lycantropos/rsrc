@@ -7,12 +7,12 @@ services:
       args:
       - PYTHON_IMAGE=${PYPY_IMAGE_NAME}
       - PYTHON_IMAGE_VERSION=${PYPY_IMAGE_VERSION}
-    image: lycantropos/rsrc-pypy:0.1.1
+    image: lycantropos/rsrc-pypy:0.1.2
     volumes:
       - ./rsrc/:/opt/rsrc/rsrc/
       - ./tests/:/opt/rsrc/tests/
       - ./README.md:/opt/rsrc/README.md
-      - ./setup.cfg:/opt/rsrc/setup.cfg
+      - ./pytest.ini:/opt/rsrc/pytest.ini
       - ./.coveragerc:/opt/rsrc/.coveragerc
       - ./setup.py:/opt/rsrc/setup.py
     entrypoint: pytest
