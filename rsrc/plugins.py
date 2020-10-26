@@ -1,4 +1,4 @@
-import codecs
+import binascii
 import json
 from typing import List
 
@@ -20,15 +20,12 @@ def to_id(*parts: str,
     return list(parts)
 
 
-_ENCODING = 'hex'
-
-
 def serialize_id(id_: Id) -> str:
-    return codecs.encode(json.dumps(id_).encode(), _ENCODING).decode()
+    return binascii.hexlify(json.dumps(id_).encode()).decode()
 
 
 def deserialize_id(string: str) -> Id:
-    return json.loads(codecs.decode(string, _ENCODING).decode())
+    return json.loads(binascii.unhexlify(string).decode())
 
 
 def to_entry_point(*, id_: Id, module_name: str, function_name: str) -> str:

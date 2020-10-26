@@ -1,2 +1,2 @@
 memoir>=0.0.3
-reprit>=0.2.2
+reprit>=0.3.0
